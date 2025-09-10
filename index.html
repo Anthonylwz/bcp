@@ -3,8 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BCP - Banco de Crédito del Perú</title>
+    <meta name="description" content="Banco de Crédito del Perú - Préstamos personales, cuentas, tarjetas de crédito y más servicios financieros">
+    <title>BCP - Banco de Crédito del Perú | Servicios Bancarios</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary-blue: #002d87;
+            --primary-orange: #ff6b00;
+            --secondary-blue: #0044cc;
+            --light-gray: #f8f9fa;
+            --medium-gray: #e0e0e0;
+            --dark-gray: #333;
+            --text-gray: #666;
+            --white: #ffffff;
+            --green: #4caf50;
+            --shadow: 0 2px 4px rgba(0,0,0,0.05);
+            --shadow-hover: 0 10px 30px rgba(0,0,0,0.15);
+            --transition: all 0.3s ease;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -15,13 +32,15 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
             background: linear-gradient(135deg, #f0f4f8 0%, #e8f0f8 100%);
             min-height: 100vh;
+            color: var(--dark-gray);
+            line-height: 1.6;
         }
 
         /* Header Styles */
         .header-top {
-            background: #f8f9fa;
+            background: var(--light-gray);
             padding: 8px 0;
-            border-bottom: 1px solid #e0e0e0;
+            border-bottom: 1px solid var(--medium-gray);
         }
 
         .header-top-content {
@@ -39,22 +58,31 @@
         }
 
         .header-links a {
-            color: #333;
+            color: var(--dark-gray);
             text-decoration: none;
             font-size: 14px;
             font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .header-links a:hover {
+            color: var(--primary-orange);
         }
 
         .language-selector {
             font-size: 14px;
-            color: #333;
+            color: var(--dark-gray);
+            cursor: pointer;
         }
 
         /* Main Navigation */
         .main-nav {
-            background: white;
+            background: var(--white);
             padding: 15px 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .nav-content {
@@ -71,11 +99,12 @@
             align-items: center;
             font-size: 32px;
             font-weight: bold;
-            color: #002d87;
+            color: var(--primary-blue);
+            text-decoration: none;
         }
 
         .logo span:first-child {
-            color: #ff6b00;
+            color: var(--primary-orange);
         }
 
         .nav-menu {
@@ -85,13 +114,18 @@
         }
 
         .nav-menu a {
-            color: #333;
+            color: var(--dark-gray);
             text-decoration: none;
             font-size: 15px;
             font-weight: 500;
             display: flex;
             align-items: center;
             gap: 5px;
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary-orange);
         }
 
         .nav-menu a::after {
@@ -113,6 +147,11 @@
             border-radius: 20px;
             padding: 8px 15px;
             gap: 10px;
+            transition: var(--transition);
+        }
+
+        .search-box:focus-within {
+            box-shadow: 0 0 0 2px rgba(0, 45, 135, 0.2);
         }
 
         .search-box input {
@@ -122,9 +161,7 @@
             width: 150px;
         }
 
-        .btn-account {
-            background: white;
-            border: 1px solid #ddd;
+        .btn {
             padding: 10px 20px;
             border-radius: 25px;
             cursor: pointer;
@@ -132,17 +169,28 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            transition: var(--transition);
+            border: none;
+            font-weight: 500;
+        }
+
+        .btn-account {
+            background: var(--white);
+            border: 1px solid var(--medium-gray);
+        }
+
+        .btn-account:hover {
+            border-color: var(--primary-blue);
         }
 
         .btn-internet {
-            background: #ff6b00;
-            color: white;
-            border: none;
-            padding: 10px 25px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 500;
+            background: var(--primary-orange);
+            color: var(--white);
+        }
+
+        .btn-internet:hover {
+            background: #e55a00;
+            transform: translateY(-2px);
         }
 
         /* Hero Section */
@@ -154,6 +202,7 @@
             justify-content: space-between;
             padding: 0 20px;
             position: relative;
+            gap: 40px;
         }
 
         .hero-content {
@@ -162,7 +211,7 @@
         }
 
         .hero-content h1 {
-            color: #002d87;
+            color: var(--primary-blue);
             font-size: 48px;
             font-weight: 700;
             line-height: 1.2;
@@ -170,21 +219,20 @@
         }
 
         .hero-content p {
-            color: #666;
+            color: var(--text-gray);
             font-size: 18px;
             margin-bottom: 30px;
         }
 
         .btn-solicitar {
-            background: #ff6b00;
-            color: white;
-            border: none;
+            background: var(--primary-orange);
+            color: var(--white);
             padding: 15px 35px;
             border-radius: 30px;
             font-size: 16px;
             font-weight: 500;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: var(--transition);
         }
 
         .btn-solicitar:hover {
@@ -213,7 +261,7 @@
         }
 
         .phone-screen {
-            background: white;
+            background: var(--white);
             height: 100%;
             padding: 20px;
             display: flex;
@@ -230,27 +278,27 @@
         .app-logo {
             width: 60px;
             height: 60px;
-            background: linear-gradient(135deg, #ff6b00 0%, #ff8533 100%);
+            background: linear-gradient(135deg, var(--primary-orange) 0%, #ff8533 100%);
             border-radius: 15px;
             margin: 0 auto 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: var(--white);
             font-weight: bold;
             font-size: 24px;
         }
 
         .amount-display {
             font-size: 32px;
-            color: #002d87;
+            color: var(--primary-blue);
             font-weight: bold;
             margin: 20px 0;
         }
 
         .loan-details {
             width: 100%;
-            background: #f8f9fa;
+            background: var(--light-gray);
             border-radius: 15px;
             padding: 15px;
             margin-top: 20px;
@@ -258,30 +306,36 @@
 
         .loan-details p {
             font-size: 12px;
-            color: #666;
+            color: var(--text-gray);
             margin: 5px 0;
         }
 
         .btn-phone {
-            background: #ff6b00;
-            color: white;
+            background: var(--primary-orange);
+            color: var(--white);
             border: none;
             padding: 15px;
             border-radius: 25px;
             width: 100%;
             margin-top: 20px;
             font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-phone:hover {
+            background: #e55a00;
         }
 
         .bcp-card {
             position: absolute;
             width: 180px;
             height: 110px;
-            background: linear-gradient(135deg, #002d87 0%, #0044cc 100%);
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             padding: 15px;
-            color: white;
+            color: var(--white);
             font-weight: bold;
             display: flex;
             align-items: flex-end;
@@ -295,7 +349,7 @@
             position: absolute;
             width: 150px;
             height: 80px;
-            background: linear-gradient(135deg, #4caf50 0%, #66bb6a 100%);
+            background: linear-gradient(135deg, var(--green) 0%, #66bb6a 100%);
             border-radius: 10px;
             box-shadow: 0 10px 30px rgba(76, 175, 80, 0.3);
             bottom: 80px;
@@ -305,7 +359,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: var(--white);
             font-size: 24px;
             font-weight: bold;
         }
@@ -335,11 +389,12 @@
             background: #ddd;
             border-radius: 2px;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: var(--transition);
         }
 
         .dot.active {
-            background: #ff6b00;
+            background: var(--primary-orange);
+            width: 60px;
         }
 
         /* Services Section */
@@ -354,17 +409,19 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
         .services-title {
-            color: #002d87;
+            color: var(--primary-blue);
             font-size: 32px;
             font-weight: 600;
         }
 
         .tag-espacio {
-            background: #002d87;
-            color: white;
+            background: var(--primary-blue);
+            color: var(--white);
             padding: 8px 20px;
             border-radius: 20px;
             font-size: 14px;
@@ -372,23 +429,26 @@
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
         }
 
         .service-card {
-            background: white;
+            background: var(--white);
             border-radius: 15px;
             padding: 30px;
             text-align: center;
             box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            transition: all 0.3s;
+            transition: var(--transition);
             cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .service-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            box-shadow: var(--shadow-hover);
         }
 
         .service-icon {
@@ -404,34 +464,33 @@
         }
 
         .service-card h3 {
-            color: #333;
+            color: var(--dark-gray);
             font-size: 16px;
             font-weight: 500;
+            margin-top: 10px;
+        }
+
+        .tag {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            margin-bottom: 10px;
+            display: inline-block;
         }
 
         .tag-sorteo {
-            background: #ff6b00;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 11px;
-            margin-bottom: 10px;
-            display: inline-block;
+            background: var(--primary-orange);
+            color: var(--white);
         }
 
         .tag-promo {
-            background: #4caf50;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 11px;
-            margin-bottom: 10px;
-            display: inline-block;
+            background: var(--green);
+            color: var(--white);
         }
 
         /* Pre-approved Section */
         .preapproved-section {
-            background: white;
+            background: var(--white);
             padding: 60px 0;
             margin-top: 80px;
         }
@@ -443,6 +502,7 @@
             align-items: center;
             justify-content: space-between;
             padding: 0 20px;
+            gap: 40px;
         }
 
         .preapproved-left {
@@ -450,7 +510,7 @@
         }
 
         .preapproved-left h2 {
-            color: #002d87;
+            color: var(--primary-blue);
             font-size: 36px;
             font-weight: 600;
             margin-bottom: 30px;
@@ -470,16 +530,17 @@
         .check-icon {
             width: 24px;
             height: 24px;
-            background: #4caf50;
+            background: var(--green);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: var(--white);
+            font-size: 12px;
         }
 
         .check-item span {
-            color: #666;
+            color: var(--text-gray);
             font-size: 16px;
         }
 
@@ -487,35 +548,37 @@
             display: flex;
             gap: 15px;
             margin-top: 30px;
+            flex-wrap: wrap;
         }
 
-        .dni-select {
+        .dni-select, .dni-input {
             padding: 12px 20px;
-            border: 1px solid #ddd;
+            border: 1px solid var(--medium-gray);
             border-radius: 25px;
-            background: white;
+            background: var(--white);
             font-size: 14px;
-            cursor: pointer;
             min-width: 100px;
         }
 
         .dni-input {
             flex: 1;
-            padding: 12px 20px;
-            border: 1px solid #ddd;
-            border-radius: 25px;
-            font-size: 14px;
+            min-width: 200px;
         }
 
         .btn-conocer {
-            background: #ff6b00;
-            color: white;
+            background: var(--primary-orange);
+            color: var(--white);
             border: none;
             padding: 12px 35px;
             border-radius: 25px;
             font-size: 16px;
             font-weight: 500;
             cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-conocer:hover {
+            background: #e55a00;
         }
 
         .preapproved-right {
@@ -533,7 +596,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: var(--white);
             font-size: 80px;
             box-shadow: 0 20px 40px rgba(33, 150, 243, 0.3);
             position: relative;
@@ -549,7 +612,7 @@
             bottom: -30px;
             right: -50px;
             padding: 20px;
-            color: white;
+            color: var(--white);
         }
 
         .card-visual .card-logo {
@@ -567,14 +630,14 @@
             position: absolute;
             width: 100px;
             height: 100px;
-            background: linear-gradient(135deg, #4caf50 0%, #66bb6a 100%);
+            background: linear-gradient(135deg, var(--green) 0%, #66bb6a 100%);
             border-radius: 15px;
             top: -20px;
             left: -30px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: var(--white);
             font-size: 40px;
             box-shadow: 0 10px 25px rgba(76, 175, 80, 0.3);
             transform: rotate(-10deg);
@@ -591,6 +654,91 @@
             padding: 0 20px;
         }
 
+        /* Footer */
+        footer {
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 60px 0 30px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--primary-orange);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column a {
+            color: #ccc;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-column a:hover {
+            color: var(--white);
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background: var(--primary-orange);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            font-size: 14px;
+            color: #ccc;
+        }
+
         /* Pause Button */
         .pause-button {
             position: fixed;
@@ -598,7 +746,7 @@
             right: 30px;
             width: 60px;
             height: 60px;
-            background: white;
+            background: var(--white);
             border-radius: 50%;
             box-shadow: 0 5px 20px rgba(0,0,0,0.15);
             display: flex;
@@ -606,10 +754,21 @@
             justify-content: center;
             cursor: pointer;
             z-index: 1000;
+            transition: var(--transition);
         }
 
         .pause-button:hover {
             transform: scale(1.1);
+        }
+
+        /* Mobile menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--primary-blue);
         }
 
         /* Animations */
@@ -634,6 +793,111 @@
         .phone-mockup {
             animation: pulse 4s ease-in-out infinite;
         }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-section {
+                flex-direction: column;
+                text-align: center;
+                gap: 60px;
+            }
+            
+            .hero-content {
+                max-width: 100%;
+            }
+            
+            .preapproved-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .check-items {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .dni-form {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu, .nav-actions {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .header-links {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            
+            .hero-content h1 {
+                font-size: 36px;
+            }
+            
+            .services-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .services-title {
+                font-size: 28px;
+            }
+            
+            .bcp-card, .money-bills {
+                display: none;
+            }
+            
+            .phone-mockup {
+                width: 250px;
+                height: 500px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 28px;
+            }
+            
+            .hero-content p {
+                font-size: 16px;
+            }
+            
+            .btn-solicitar {
+                padding: 12px 25px;
+                font-size: 14px;
+            }
+            
+            .preapproved-left h2 {
+                font-size: 28px;
+            }
+            
+            .dni-form {
+                flex-direction: column;
+            }
+            
+            .dni-input, .dni-select, .btn-conocer {
+                width: 100%;
+            }
+        }
+
+        /* Mobile menu active state */
+        .mobile-menu-active .nav-menu {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            padding: 20px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        }
     </style>
 </head>
 <body>
@@ -641,12 +905,12 @@
     <div class="header-top">
         <div class="header-top-content">
             <div class="header-links">
-                <a href="#">Personas</a>
-                <a href="#">PyMES</a>
-                <a href="#">Empresas</a>
+                <a href="#"><i class="fas fa-user"></i> Personas</a>
+                <a href="#"><i class="fas fa-building"></i> PyMES</a>
+                <a href="#"><i class="fas fa-briefcase"></i> Empresas</a>
             </div>
             <div class="language-selector">
-                Español / Quechua
+                <i class="fas fa-globe"></i> Español / Quechua
             </div>
         </div>
     </div>
@@ -654,22 +918,25 @@
     <!-- Main Navigation -->
     <nav class="main-nav">
         <div class="nav-content">
-            <div class="logo">
+            <a href="#" class="logo">
                 <span>►</span>BCP<span>►</span>
-            </div>
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
             <div class="nav-menu">
-                <a href="#">Productos</a>
-                <a href="#">Soluciones Digitales</a>
-                <a href="#">Beneficios</a>
-                <a href="#">Ayuda y Educación</a>
+                <a href="#"><i class="fas fa-credit-card"></i> Productos</a>
+                <a href="#"><i class="fas fa-mobile-alt"></i> Soluciones Digitales</a>
+                <a href="#"><i class="fas fa-gift"></i> Beneficios</a>
+                <a href="#"><i class="fas fa-question-circle"></i> Ayuda y Educación</a>
             </div>
             <div class="nav-actions">
                 <div class="search-box">
-                    <span>🔍</span>
+                    <i class="fas fa-search"></i>
                     <input type="text" placeholder="Buscar">
                 </div>
-                <button class="btn-account">👤 Abrir cuenta</button>
-                <button class="btn-internet">🔒 Banca por Internet</button>
+                <button class="btn btn-account"><i class="fas fa-user"></i> Abrir cuenta</button>
+                <button class="btn btn-internet"><i class="fas fa-lock"></i> Banca por Internet</button>
             </div>
         </div>
     </nav>
@@ -678,7 +945,7 @@
     <section class="hero-section">
         <div class="hero-content">
             <h1>Solicita tu Préstamo Personal 100% Online</h1>
-            <p>Y obtén tu dinero al instante</p>
+            <p>Obtén hasta S/ 150,000 preaprobados con tasas preferenciales y desembolso en 24 horas</p>
             <button class="btn-solicitar">Solicítalo ahora</button>
         </div>
         <div class="hero-image">
@@ -720,39 +987,37 @@
         </div>
         <div class="services-grid">
             <div class="service-card">
-                <span class="tag-sorteo">Sorteo</span>
-                <div class="service-icon">🏠</div>
+                <span class="tag tag-sorteo">Sorteo</span>
+                <div class="service-icon"><i class="fas fa-home"></i></div>
                 <h3>Abre una cuenta</h3>
             </div>
             <div class="service-card">
-                <div class="service-icon">💳</div>
+                <div class="service-icon"><i class="fas fa-credit-card"></i></div>
                 <h3>Obtener una Tarjeta</h3>
             </div>
             <div class="service-card">
-                <div class="service-icon">💰</div>
+                <div class="service-icon"><i class="fas fa-hand-holding-usd"></i></div>
                 <h3>Solicitar un Préstamo</h3>
             </div>
             <div class="service-card">
-                <div class="service-icon">📱</div>
+                <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
                 <h3>Adelantar mi Sueldo</h3>
             </div>
-        </div>
-        <div class="services-grid" style="margin-top: 30px;">
             <div class="service-card">
-                <span class="tag-promo">Promo</span>
-                <div class="service-icon">💳</div>
+                <span class="tag tag-promo">Promo</span>
+                <div class="service-icon"><i class="fas fa-credit-card"></i></div>
                 <h3>Solicitar Tarjeta de Crédito</h3>
             </div>
             <div class="service-card">
-                <div class="service-icon">🛡️</div>
+                <div class="service-icon"><i class="fas fa-shield-alt"></i></div>
                 <h3>Contratar un Seguro</h3>
             </div>
             <div class="service-card">
-                <div class="service-icon">📄</div>
+                <div class="service-icon"><i class="fas fa-file-alt"></i></div>
                 <h3>Solicitar Constancias</h3>
             </div>
             <div class="service-card">
-                <div class="service-icon">❓</div>
+                <div class="service-icon"><i class="fas fa-question-circle"></i></div>
                 <h3>Hacer una Consulta</h3>
             </div>
         </div>
@@ -765,12 +1030,16 @@
                 <h2>¡Conoce tus productos preaprobados!</h2>
                 <div class="check-items">
                     <div class="check-item">
-                        <div class="check-icon">✓</div>
+                        <div class="check-icon"><i class="fas fa-check"></i></div>
                         <span>Solo con tu número de documento</span>
                     </div>
                     <div class="check-item">
-                        <div class="check-icon">✓</div>
+                        <div class="check-icon"><i class="fas fa-check"></i></div>
                         <span>Para clientes y no clientes BCP</span>
+                    </div>
+                    <div class="check-item">
+                        <div class="check-icon"><i class="fas fa-check"></i></div>
+                        <span>Sin afectar tu historial crediticio</span>
                     </div>
                 </div>
                 <div class="dni-form">
@@ -784,18 +1053,69 @@
                 </div>
             </div>
             <div class="preapproved-right">
-                <div class="shield-icon">✓</div>
+                <div class="shield-icon"><i class="fas fa-shield-alt"></i></div>
                 <div class="card-visual">
                     <div class="card-logo">BCP</div>
                     <div class="card-number">•••• •••• •••• 1234</div>
                 </div>
-                <div class="money-stack">💵</div>
+                <div class="money-stack"><i class="fas fa-money-bill-wave"></i></div>
             </div>
         </div>
         <p class="disclaimer">
             Podrán acceder a su esta información sólo usuarios correctos para los fines de este proceso, y será tratada conforme a la Ley N° 29733 y su Reglamento.
         </p>
-        <footer><!-- Voiceflow Web Chat -->
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Acerca de nosotros</h3>
+                <ul>
+                    <li><a href="#">Nuestra historia</a></li>
+                    <li><a href="#">Responsabilidad social</a></li>
+                    <li><a href="#">Trabaja con nosotros</a></li>
+                    <li><a href="#">Sostenibilidad</a></li>
+                    <li><a href="#">Prensa</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Ayuda y contacto</h3>
+                <ul>
+                    <li><a href="#">Centro de ayuda</a></li>
+                    <li><a href="#">Preguntas frecuentes</a></li>
+                    <li><a href="#">Agencias y cajeros</a></li>
+                    <li><a href="#">Contáctanos</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Legales</h3>
+                <ul>
+                    <li><a href="#">Tasas y tarifas</a></li>
+                    <li><a href="#">Contratos y comisiones</a></li>
+                    <li><a href="#">Libro de reclamaciones</a></li>
+                    <li><a href="#">Transparencia</a></li>
+                    <li><a href="#">Defensoría del cliente</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Síguenos</h3>
+                <p>Mantente conectado con nosotros a través de nuestras redes sociales</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2023 Banco de Crédito del Perú. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+        
+    <!-- Voiceflow Web Chat -->
 <script type="text/javascript">
   (function(d, t) {
     var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
@@ -803,7 +1123,7 @@
       window.voiceflow.chat.load({
         verify: { projectID: "68c0865902f711654c36183d" }, 
         url: "https://general-runtime.voiceflow.com",
-        versionID: "production"  // o "development" si estás probando
+        versionID: "68c0865902f711654c36183e"  // usas la versión específica, no "production"
       });
     };
     v.src = "https://cdn.voiceflow.com/widget/bundle.mjs";
@@ -811,51 +1131,6 @@
     s.parentNode.insertBefore(v, s);
   })(document, 'script');
 </script>
-</footer>
-    </section>
-
-
-    <script>
-        // Carousel functionality
-        const dots = document.querySelectorAll('.dot');
-        let currentSlide = 0;
-
-        function changeSlide() {
-            dots.forEach(dot => dot.classList.remove('active'));
-            currentSlide = (currentSlide + 1) % dots.length;
-            dots[currentSlide].classList.add('active');
-        }
-
-        setInterval(changeSlide, 3000);
-
-        // Add hover effects
-        document.querySelectorAll('.service-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.background = 'linear-gradient(135deg, #fff 0%, #f8f9fa 100%)';
-            });
-            card.addEventListener('mouseleave', function() {
-                this.style.background = 'white';
-            });
-        });
-
-        // Form validation
-        document.querySelector('.btn-conocer').addEventListener('click', function(e) {
-            e.preventDefault();
-            const input = document.querySelector('.dni-input');
-            if (input.value.length < 8) {
-                input.style.borderColor = '#ff6b00';
-                input.placeholder = 'Ingrese un documento válido';
-            } else {
-                alert('Consultando productos preaprobados...');
-            }
-        });
-
-        // Smooth scroll
-        document.querySelector('.btn-solicitar').addEventListener('click', function() {
-            document.querySelector('.preapproved-section').scrollIntoView({ 
-                behavior: 'smooth' 
-            });
-        });
-    </script>
+    
 </body>
 </html>
