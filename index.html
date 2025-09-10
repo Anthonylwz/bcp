@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BCP - Banco de Crédito del Perú</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f0f4f8 0%, #e8f0f8 100%);
+            min-height: 100vh;
+        }
+
+        /* Header Styles */
+        .header-top {
+            background: #f8f9fa;
+            padding: 8px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .header-top-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .header-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .header-links a {
+            color: #333;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .language-selector {
+            font-size: 14px;
+            color: #333;
+        }
+
+        /* Main Navigation */
+        .main-nav {
+            background: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 32px;
+            font-weight: bold;
+            color: #002d87;
+        }
+
+        .logo span:first-child {
+            color: #ff6b00;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 35px;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: #333;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .nav-menu a::after {
+            content: '▼';
+            font-size: 10px;
+            color: #999;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: #f5f5f5;
+            border-radius: 20px;
+            padding: 8px 15px;
+            gap: 10px;
+        }
+
+        .search-box input {
+            border: none;
+            background: none;
+            outline: none;
+            width: 150px;
+        }
+
+        .btn-account {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-internet {
+            background: #ff6b00;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            max-width: 1200px;
+            margin: 50px auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .hero-content h1 {
+            color: #002d87;
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            color: #666;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .btn-solicitar {
+            background: #ff6b00;
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-solicitar:hover {
+            background: #e55a00;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 0, 0.3);
+        }
+
+        .hero-image {
+            position: relative;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .phone-mockup {
+            width: 300px;
+            height: 600px;
+            background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+            border-radius: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+            border: 10px solid #333;
+        }
+
+        .phone-screen {
+            background: white;
+            height: 100%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .app-header {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .app-logo {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #ff6b00 0%, #ff8533 100%);
+            border-radius: 15px;
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        .amount-display {
+            font-size: 32px;
+            color: #002d87;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .loan-details {
+            width: 100%;
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        .loan-details p {
+            font-size: 12px;
+            color: #666;
+            margin: 5px 0;
+        }
+
+        .btn-phone {
+            background: #ff6b00;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 25px;
+            width: 100%;
+            margin-top: 20px;
+            font-weight: 500;
+        }
+
+        .bcp-card {
+            position: absolute;
+            width: 180px;
+            height: 110px;
+            background: linear-gradient(135deg, #002d87 0%, #0044cc 100%);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            padding: 15px;
+            color: white;
+            font-weight: bold;
+            display: flex;
+            align-items: flex-end;
+            top: 50px;
+            left: -50px;
+            transform: rotate(-15deg);
+            z-index: 10;
+        }
+
+        .money-bills {
+            position: absolute;
+            width: 150px;
+            height: 80px;
+            background: linear-gradient(135deg, #4caf50 0%, #66bb6a 100%);
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(76, 175, 80, 0.3);
+            bottom: 80px;
+            right: -30px;
+            transform: rotate(10deg);
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .orange-circle {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 107, 0, 0.2) 0%, rgba(255, 107, 0, 0.05) 100%);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+            z-index: -1;
+        }
+
+        /* Carousel Dots */
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .dot {
+            width: 40px;
+            height: 4px;
+            background: #ddd;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .dot.active {
+            background: #ff6b00;
+        }
+
+        /* Services Section */
+        .services-section {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+
+        .services-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .services-title {
+            color: #002d87;
+            font-size: 32px;
+            font-weight: 600;
+        }
+
+        .tag-espacio {
+            background: #002d87;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .service-card h3 {
+            color: #333;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .tag-sorteo {
+            background: #ff6b00;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .tag-promo {
+            background: #4caf50;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        /* Pre-approved Section */
+        .preapproved-section {
+            background: white;
+            padding: 60px 0;
+            margin-top: 80px;
+        }
+
+        .preapproved-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .preapproved-left {
+            flex: 1;
+        }
+
+        .preapproved-left h2 {
+            color: #002d87;
+            font-size: 36px;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        .check-items {
+            margin-bottom: 30px;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .check-icon {
+            width: 24px;
+            height: 24px;
+            background: #4caf50;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .check-item span {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .dni-form {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .dni-select {
+            padding: 12px 20px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            background: white;
+            font-size: 14px;
+            cursor: pointer;
+            min-width: 100px;
+        }
+
+        .dni-input {
+            flex: 1;
+            padding: 12px 20px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            font-size: 14px;
+        }
+
+        .btn-conocer {
+            background: #ff6b00;
+            color: white;
+            border: none;
+            padding: 12px 35px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .preapproved-right {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        .shield-icon {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, #64b5f6 0%, #2196f3 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 80px;
+            box-shadow: 0 20px 40px rgba(33, 150, 243, 0.3);
+            position: relative;
+        }
+
+        .card-visual {
+            position: absolute;
+            width: 250px;
+            height: 150px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            bottom: -30px;
+            right: -50px;
+            padding: 20px;
+            color: white;
+        }
+
+        .card-visual .card-logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .card-visual .card-number {
+            font-size: 14px;
+            letter-spacing: 2px;
+        }
+
+        .money-stack {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #4caf50 0%, #66bb6a 100%);
+            border-radius: 15px;
+            top: -20px;
+            left: -30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 40px;
+            box-shadow: 0 10px 25px rgba(76, 175, 80, 0.3);
+            transform: rotate(-10deg);
+        }
+
+        .disclaimer {
+            text-align: center;
+            color: #999;
+            font-size: 12px;
+            margin-top: 30px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 20px;
+        }
+
+        /* Pause Button */
+        .pause-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .pause-button:hover {
+            transform: scale(1.1);
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(-15deg); }
+            50% { transform: translateY(-10px) rotate(-15deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .bcp-card {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .money-bills {
+            animation: float 3s ease-in-out infinite 0.5s;
+        }
+
+        .phone-mockup {
+            animation: pulse 4s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Top -->
+    <div class="header-top">
+        <div class="header-top-content">
+            <div class="header-links">
+                <a href="#">Personas</a>
+                <a href="#">PyMES</a>
+                <a href="#">Empresas</a>
+            </div>
+            <div class="language-selector">
+                Español / Quechua
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav class="main-nav">
+        <div class="nav-content">
+            <div class="logo">
+                <span>►</span>BCP<span>►</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#">Productos</a>
+                <a href="#">Soluciones Digitales</a>
+                <a href="#">Beneficios</a>
+                <a href="#">Ayuda y Educación</a>
+            </div>
+            <div class="nav-actions">
+                <div class="search-box">
+                    <span>🔍</span>
+                    <input type="text" placeholder="Buscar">
+                </div>
+                <button class="btn-account">👤 Abrir cuenta</button>
+                <button class="btn-internet">🔒 Banca por Internet</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Solicita tu Préstamo Personal 100% Online</h1>
+            <p>Y obtén tu dinero al instante</p>
+            <button class="btn-solicitar">Solicítalo ahora</button>
+        </div>
+        <div class="hero-image">
+            <div class="orange-circle"></div>
+            <div class="bcp-card">BCP</div>
+            <div class="phone-mockup">
+                <div class="phone-screen">
+                    <div class="app-header">
+                        <div class="app-logo">BCP</div>
+                        <p style="font-size: 12px; color: #666;">Felicitaciones, Sofía</p>
+                    </div>
+                    <div class="amount-display">S/ 20,000</div>
+                    <div class="loan-details">
+                        <p>Préstamo aprobado</p>
+                        <p>Monto: S/ 20,000</p>
+                        <p>Plazo: 48 meses</p>
+                        <p>TEA: 18.00%</p>
+                    </div>
+                    <button class="btn-phone">Quiero este Préstamo</button>
+                </div>
+            </div>
+            <div class="money-bills">S/.</div>
+        </div>
+    </section>
+
+    <!-- Carousel Dots -->
+    <div class="carousel-dots">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="services-header">
+            <h2 class="services-title">¿Qué necesitas hacer hoy?</h2>
+            <span class="tag-espacio">Mi Espacio BCP</span>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <span class="tag-sorteo">Sorteo</span>
+                <div class="service-icon">🏠</div>
+                <h3>Abre una cuenta</h3>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💳</div>
+                <h3>Obtener una Tarjeta</h3>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💰</div>
+                <h3>Solicitar un Préstamo</h3>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📱</div>
+                <h3>Adelantar mi Sueldo</h3>
+            </div>
+        </div>
+        <div class="services-grid" style="margin-top: 30px;">
+            <div class="service-card">
+                <span class="tag-promo">Promo</span>
+                <div class="service-icon">💳</div>
+                <h3>Solicitar Tarjeta de Crédito</h3>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🛡️</div>
+                <h3>Contratar un Seguro</h3>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📄</div>
+                <h3>Solicitar Constancias</h3>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">❓</div>
+                <h3>Hacer una Consulta</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pre-approved Section -->
+    <section class="preapproved-section">
+        <div class="preapproved-content">
+            <div class="preapproved-left">
+                <h2>¡Conoce tus productos preaprobados!</h2>
+                <div class="check-items">
+                    <div class="check-item">
+                        <div class="check-icon">✓</div>
+                        <span>Solo con tu número de documento</span>
+                    </div>
+                    <div class="check-item">
+                        <div class="check-icon">✓</div>
+                        <span>Para clientes y no clientes BCP</span>
+                    </div>
+                </div>
+                <div class="dni-form">
+                    <select class="dni-select">
+                        <option>DNI</option>
+                        <option>CE</option>
+                        <option>Pasaporte</option>
+                    </select>
+                    <input type="text" class="dni-input" placeholder="Nro de documento">
+                    <button class="btn-conocer">Conocer</button>
+                </div>
+            </div>
+            <div class="preapproved-right">
+                <div class="shield-icon">✓</div>
+                <div class="card-visual">
+                    <div class="card-logo">BCP</div>
+                    <div class="card-number">•••• •••• •••• 1234</div>
+                </div>
+                <div class="money-stack">💵</div>
+            </div>
+        </div>
+        <p class="disclaimer">
+            Podrán acceder a su esta información sólo usuarios correctos para los fines de este proceso, y será tratada conforme a la Ley N° 29733 y su Reglamento.
+        </p>
+        <footer><!-- Voiceflow Web Chat -->
+<script type="text/javascript">
+  (function(d, t) {
+    var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+    v.onload = function() {
+      window.voiceflow.chat.load({
+        verify: { projectID: "68c0865902f711654c36183d" }, 
+        url: "https://general-runtime.voiceflow.com",
+        versionID: "production"  // o "development" si estás probando
+      });
+    };
+    v.src = "https://cdn.voiceflow.com/widget/bundle.mjs";
+    v.type = "text/javascript";
+    s.parentNode.insertBefore(v, s);
+  })(document, 'script');
+</script>
+</footer>
+    </section>
+
+
+    <script>
+        // Carousel functionality
+        const dots = document.querySelectorAll('.dot');
+        let currentSlide = 0;
+
+        function changeSlide() {
+            dots.forEach(dot => dot.classList.remove('active'));
+            currentSlide = (currentSlide + 1) % dots.length;
+            dots[currentSlide].classList.add('active');
+        }
+
+        setInterval(changeSlide, 3000);
+
+        // Add hover effects
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.background = 'linear-gradient(135deg, #fff 0%, #f8f9fa 100%)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.background = 'white';
+            });
+        });
+
+        // Form validation
+        document.querySelector('.btn-conocer').addEventListener('click', function(e) {
+            e.preventDefault();
+            const input = document.querySelector('.dni-input');
+            if (input.value.length < 8) {
+                input.style.borderColor = '#ff6b00';
+                input.placeholder = 'Ingrese un documento válido';
+            } else {
+                alert('Consultando productos preaprobados...');
+            }
+        });
+
+        // Smooth scroll
+        document.querySelector('.btn-solicitar').addEventListener('click', function() {
+            document.querySelector('.preapproved-section').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        });
+    </script>
+</body>
+</html>
